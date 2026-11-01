@@ -1,20 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { Navbar } from './components/Navbar';
-import { HeroSection } from './components/HeroSection';
-import { QuickQuoteCalculator } from './components/QuickQuoteCalculator';
-import { CoverageMapSection } from './components/CoverageMapSection';
-import { ServicesDirectory50 } from './components/ServicesDirectory50';
+import { OrderHeroCard } from './components/OrderHeroCard';
 import { ServicePageDetail } from './components/ServicePageDetail';
+import { ServicesDirectory50 } from './components/ServicesDirectory50';
+import { CoverageMapSection } from './components/CoverageMapSection';
 import { CorporateB2BSection } from './components/CorporateB2BSection';
 import { GoogleTrustSection } from './components/GoogleTrustSection';
 import { Footer } from './components/Footer';
-import { FloatingWhatsApp } from './components/FloatingWhatsApp';
 import { SERVICES_CATALOG, COMPANY_INFO } from './data/servicesCatalog';
 
 export default function App() {
   const [activeServiceId, setActiveServiceId] = useState<string | null>(null);
+  const [modalOpen, setModalOpen] = useState(false);
 
-  // Initialize and synchronize with URL parameters or hash
+  // Sync with browser URL / hash for direct linking of all 50 SEO landing pages
   useEffect(() => {
     const handleUrlChange = () => {
       const urlParams = new URLSearchParams(window.location.search);
@@ -36,6 +35,7 @@ export default function App() {
 
   const handleSelectService = (id: string) => {
     setActiveServiceId(id);
+    setModalOpen(false);
     window.history.pushState(null, '', `?servico=${id}`);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -46,19 +46,6 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const scrollToSection = (sectionId: string) => {
-    if (activeServiceId) {
-      setActiveServiceId(null);
-      window.history.pushState(null, '', window.location.pathname);
-    }
-    setTimeout(() => {
-      const el = document.getElementById(sectionId);
-      if (el) {
-        el.scrollIntoView({ behavior: 'smooth' });
-      }
-    }, 100);
-  };
-
   const activeService = activeServiceId 
     ? SERVICES_CATALOG.find(s => s.id === activeServiceId) 
     : null;
@@ -66,7 +53,7 @@ export default function App() {
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans selection:bg-amber-500 selection:text-slate-950">
       
-      {/* Dynamic SEO schema markup for Google Rich Results */}
+      {/* Dynamic SEO schema markup */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -89,33 +76,20 @@ export default function App() {
               "@type": "AggregateRating",
               "ratingValue": "4.9",
               "reviewCount": "148"
-            },
-            "openingHoursSpecification": [
-              {
-                "@type": "OpeningHoursSpecification",
-                "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-                "opens": "08:00",
-                "closes": "20:00"
-              }
-            ],
-            "priceRange": "$$"
+            }
           })
         }}
       />
 
-      {/* Primary Navigation */}
+      {/* Enterprise Institutional Header */}
       <Navbar
         onNavigateHome={handleBackToHome}
-        onNavigateDirectory={() => scrollToSection('catalogo-50')}
-        onNavigateMap={() => scrollToSection('mapa')}
-        onNavigateCalculator={() => scrollToSection('simulador')}
-        onNavigateCorporate={() => scrollToSection('empresas')}
-        onSelectService={handleSelectService}
+        onOpenDirectory={() => setModalOpen(true)}
         activeServiceId={activeServiceId}
       />
 
       {/* Main Content Area */}
-      <main className="flex-1">
+      <main className="flex-1 w-full">
         {activeService ? (
           <ServicePageDetail
             service={activeService}
@@ -123,39 +97,51 @@ export default function App() {
             onSelectService={handleSelectService}
           />
         ) : (
-          <>
-            <HeroSection
-              onOpenCalculator={() => scrollToSection('simulador')}
-              onOpenDirectory={() => scrollToSection('catalogo-50')}
-              onOpenMap={() => scrollToSection('mapa')}
+          <div className="w-full px-4 sm:px-6 lg:px-8 py-8 lg:py-12 space-y-12">
+            
+            {/* Primary Order Dispatcher Hero */}
+            <OrderHeroCard
+              onSelectService={handleSelectService}
+              onOpenAllNeighborhoods={() => setModalOpen(true)}
             />
 
-            <QuickQuoteCalculator />
-
+            {/* Coverage Map with Real Asset */}
             <CoverageMapSection
               onSelectService={handleSelectService}
-              onFilterRegion={() => scrollToSection('catalogo-50')}
             />
 
+            {/* Corporate B2B Billing (NF-e & Faturamento) */}
+            <div className="max-w-7xl mx-auto">
+              <CorporateB2BSection />
+            </div>
+
+            {/* Google Verified Customer Reviews */}
+            <div className="max-w-7xl mx-auto">
+              <GoogleTrustSection />
+            </div>
+
+            {/* Directory of 50 Pages */}
             <ServicesDirectory50
               onSelectService={handleSelectService}
             />
 
-            <CorporateB2BSection />
-
-            <GoogleTrustSection />
-          </>
+          </div>
         )}
       </main>
 
-      {/* Footer */}
+      {/* Modal for 50 Bairros */}
+      {modalOpen && (
+        <ServicesDirectory50
+          onSelectService={handleSelectService}
+          isOpenModal={true}
+          onCloseModal={() => setModalOpen(false)}
+        />
+      )}
+
+      {/* Enterprise Full-Width Footer */}
       <Footer
         onSelectService={handleSelectService}
-        onFilterRegion={() => scrollToSection('catalogo-50')}
       />
-
-      {/* Fixed Floating WhatsApp Button */}
-      <FloatingWhatsApp />
 
     </div>
   );

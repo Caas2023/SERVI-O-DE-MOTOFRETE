@@ -1,253 +1,207 @@
-import React, { useState, useMemo } from 'react';
-import { 
-  Search, 
-  Filter, 
-  MapPin, 
-  Clock, 
-  ArrowRight, 
-  Phone, 
-  Sparkles,
-  ShoppingBag,
-  FileText,
-  Truck,
-  HeartPulse,
-  Wrench,
-  Building,
-  Plane,
-  Layers
-} from 'lucide-react';
+import React, { useState } from 'react';
+import { Search, MapPin, Clock, ArrowRight, X, Layers, Filter } from 'lucide-react';
 import { SERVICES_CATALOG } from '../data/servicesCatalog';
-import { ServiceCategory, RegionType } from '../types';
-import { generateWhatsAppLink } from '../utils/pricing';
 
 interface ServicesDirectory50Props {
   onSelectService: (serviceId: string) => void;
-  initialCategory?: string;
+  isOpenModal?: boolean;
+  onCloseModal?: () => void;
 }
 
 export const ServicesDirectory50: React.FC<ServicesDirectory50Props> = ({
   onSelectService,
-  initialCategory
+  isOpenModal,
+  onCloseModal
 }) => {
-  const [selectedRegion, setSelectedRegion] = useState<string>('Todas');
-  const [selectedCategory, setSelectedCategory] = useState<string>(initialCategory || 'Todas');
-  const [searchQuery, setSearchQuery] = useState<string>('');
+  const [search, setSearch] = useState('');
+  const [activeRegion, setActiveRegion] = useState('Todas');
+  const [activeCategory, setActiveCategory] = useState('Todas');
 
-  const regions: (string)[] = ['Todas', 'Guarulhos', 'Zona Norte SP', 'Centro & Brás', 'Zona Leste SP'];
+  const regions = ['Todas', 'Guarulhos', 'Centro & Brás', 'Zona Norte SP', 'Zona Leste SP'];
 
   const categories = [
-    { id: 'Todas', label: 'Todas as Categorias', icon: Layers },
-    { id: 'shopping', label: 'Shoppings', icon: ShoppingBag },
-    { id: 'bras-moda', label: 'Brás & Moda', icon: Sparkles },
-    { id: 'documentos', label: 'Documentos & Cartórios', icon: FileText },
-    { id: 'ecommerce', label: 'E-commerce & Same Day', icon: Truck },
-    { id: 'saude', label: 'Saúde & Remédios', icon: HeartPulse },
-    { id: 'autopecas', label: 'Autopeças', icon: Wrench },
-    { id: 'corporativo', label: 'Corporativo PJ', icon: Building },
+    { id: 'Todas', label: 'Todas as Categorias' },
+    { id: 'shopping', label: 'Shoppings' },
+    { id: 'bras-moda', label: 'Brás & Moda' },
+    { id: 'documentos', label: 'Documentos' },
+    { id: 'corporativo', label: 'Corporativo & Malotes' },
+    { id: 'saude', label: 'Saúde' },
+    { id: 'autopecas', label: 'Autopeças' },
   ];
 
-  const filteredServices = useMemo(() => {
-    return SERVICES_CATALOG.filter(item => {
-      const matchRegion = selectedRegion === 'Todas' || item.region === selectedRegion;
-      const matchCategory = selectedCategory === 'Todas' || item.serviceCategory === selectedCategory;
-      const query = searchQuery.toLowerCase().trim();
-      const matchSearch = query === '' || 
-        item.title.toLowerCase().includes(query) ||
-        item.neighborhood.toLowerCase().includes(query) ||
-        item.h1.toLowerCase().includes(query) ||
-        item.keywords.some(k => k.toLowerCase().includes(query));
+  const filtered = SERVICES_CATALOG.filter(s => {
+    const matchRegion = activeRegion === 'Todas' || s.region === activeRegion;
+    const matchCat = activeCategory === 'Todas' || s.serviceCategory === activeCategory;
+    const query = search.toLowerCase().trim();
+    const matchSearch = query === '' || 
+      s.neighborhood.toLowerCase().includes(query) ||
+      s.title.toLowerCase().includes(query) ||
+      s.keywords.some(k => k.toLowerCase().includes(query));
 
-      return matchRegion && matchCategory && matchSearch;
-    });
-  }, [selectedRegion, selectedCategory, searchQuery]);
+    return matchRegion && matchCat && matchSearch;
+  });
 
-  return (
-    <section id="catalogo-50" className="py-16 bg-slate-900 border-b border-slate-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  const content = (
+    <div className="space-y-6">
+      
+      {/* Search and Filters */}
+      <div className="bg-slate-950 p-4 sm:p-6 rounded-2xl border border-slate-800 space-y-4">
         
-        {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-10">
-          <div className="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/20 px-3 py-1 rounded-full text-xs font-bold text-amber-400 mb-3">
-            <Layers className="w-3.5 h-3.5" /> Catálogo Completo de 50 Serviços
-          </div>
-          <h2 className="font-heading text-3xl sm:text-4xl font-black text-white tracking-tight">
-            50 Páginas de Serviços Especializados por Bairro
-          </h2>
-          <p className="text-slate-400 text-sm sm:text-base mt-2">
-            Rotas dedicadas, prazos garantidos e atendimento presencial em cada região mapeada. Escolha seu bairro para ver detalhes completos.
-          </p>
+        {/* Search Input */}
+        <div className="relative">
+          <Search className="w-4 h-4 text-slate-400 absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none" />
+          <input
+            type="text"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Pesquise por bairro (ex: Brás, Tatuapé, Santana, Internacional Shopping, Dutra)..."
+            className="w-full bg-slate-900 border border-slate-700 rounded-xl pl-11 pr-4 py-3 text-xs sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
+          />
         </div>
 
-        {/* Filter and Search Bar */}
-        <div className="bg-slate-950/80 border border-slate-800 rounded-2xl p-4 sm:p-6 mb-8 space-y-4 shadow-xl">
-          
-          {/* Search Input */}
-          <div className="relative">
-            <Search className="w-5 h-5 text-amber-400 absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none" />
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Pesquise por bairro (ex: Brás, Tatuapé, Santana, Gopouva) ou serviço (ex: shopping, cartório, roupas)..."
-              className="w-full bg-slate-900 border border-slate-700 rounded-xl pl-12 pr-4 py-3.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
-            />
-          </div>
-
-          {/* Region Tabs */}
-          <div>
-            <span className="text-xs font-bold text-slate-400 block mb-2">Filtrar por Região:</span>
-            <div className="flex flex-wrap gap-2">
-              {regions.map((region) => (
-                <button
-                  key={region}
-                  onClick={() => setSelectedRegion(region)}
-                  className={`text-xs px-3.5 py-2 rounded-xl border transition cursor-pointer ${
-                    selectedRegion === region
-                      ? 'bg-amber-500 text-slate-950 font-black border-amber-500 shadow-md shadow-amber-500/20'
-                      : 'bg-slate-900/60 text-slate-400 border-slate-800 hover:text-white hover:border-slate-700'
-                  }`}
-                >
-                  {region}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Category Pills */}
-          <div>
-            <span className="text-xs font-bold text-slate-400 block mb-2">Filtrar por Tipo de Serviço:</span>
-            <div className="flex flex-wrap gap-2">
-              {categories.map((cat) => {
-                const Icon = cat.icon;
-                return (
-                  <button
-                    key={cat.id}
-                    onClick={() => setSelectedCategory(cat.id)}
-                    className={`text-xs px-3 py-1.5 rounded-lg border transition flex items-center gap-1.5 cursor-pointer ${
-                      selectedCategory === cat.id
-                        ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/50 font-bold'
-                        : 'bg-slate-900/40 text-slate-400 border-slate-800 hover:text-white hover:border-slate-700'
-                    }`}
-                  >
-                    <Icon className="w-3.5 h-3.5" />
-                    <span>{cat.label}</span>
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Active Results Counter */}
-          <div className="flex items-center justify-between text-xs text-slate-400 pt-2 border-t border-slate-800/80">
-            <span>
-              Exibindo <strong className="text-white">{filteredServices.length}</strong> de <strong className="text-amber-400">{SERVICES_CATALOG.length}</strong> páginas de serviço disponíveis.
-            </span>
-            {(selectedRegion !== 'Todas' || selectedCategory !== 'Todas' || searchQuery !== '') && (
+        {/* Region Pills */}
+        <div className="space-y-1.5">
+          <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider block">
+            Regiões:
+          </span>
+          <div className="flex flex-wrap gap-1.5">
+            {regions.map((reg) => (
               <button
-                onClick={() => {
-                  setSelectedRegion('Todas');
-                  setSelectedCategory('Todas');
-                  setSearchQuery('');
-                }}
-                className="text-amber-400 hover:underline font-semibold cursor-pointer"
+                key={reg}
+                onClick={() => setActiveRegion(reg)}
+                className={`text-xs px-3 py-1.5 rounded-xl border transition cursor-pointer ${
+                  activeRegion === reg
+                    ? 'bg-amber-500 text-slate-950 font-bold border-amber-500 shadow-md shadow-amber-500/20'
+                    : 'bg-slate-900/60 text-slate-400 border-slate-800 hover:text-white'
+                }`}
               >
-                Limpar filtros
+                {reg}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Category Filter */}
+        <div className="space-y-1.5">
+          <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider block">
+            Modalidades de Entrega:
+          </span>
+          <div className="flex flex-wrap gap-1.5">
+            {categories.map((cat) => (
+              <button
+                key={cat.id}
+                onClick={() => setActiveCategory(cat.id)}
+                className={`text-xs px-2.5 py-1 rounded-lg border transition cursor-pointer ${
+                  activeCategory === cat.id
+                    ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/50 font-semibold'
+                    : 'bg-slate-900/40 text-slate-400 border-slate-800 hover:text-slate-200'
+                }`}
+              >
+                {cat.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="text-[11px] text-slate-400 pt-1 border-t border-slate-800/80 flex items-center justify-between">
+          <span>Exibindo <strong>{filtered.length}</strong> de <strong>{SERVICES_CATALOG.length}</strong> páginas de serviços indexadas.</span>
+          {(search || activeRegion !== 'Todas' || activeCategory !== 'Todas') && (
+            <button
+              onClick={() => { setSearch(''); setActiveRegion('Todas'); setActiveCategory('Todas'); }}
+              className="text-amber-400 hover:underline cursor-pointer"
+            >
+              Limpar filtros
+            </button>
+          )}
+        </div>
+
+      </div>
+
+      {/* Grid of Pages */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-h-[60vh] overflow-y-auto pr-1">
+        {filtered.map((item) => (
+          <button
+            key={item.id}
+            onClick={() => {
+              onSelectService(item.id);
+              if (onCloseModal) onCloseModal();
+            }}
+            className="w-full text-left p-4 rounded-2xl bg-slate-950/80 hover:bg-slate-900 border border-slate-800/80 hover:border-amber-500/40 transition flex items-center justify-between group cursor-pointer"
+          >
+            <div className="pr-3 space-y-1">
+              <div className="flex items-center gap-2">
+                <span className="text-xs font-bold text-white group-hover:text-amber-400 transition">
+                  {item.neighborhood}
+                </span>
+                <span className="text-[10px] text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20">
+                  {item.categoryLabel}
+                </span>
+              </div>
+              <p className="text-xs text-slate-400 line-clamp-1">
+                {item.title}
+              </p>
+              <div className="text-[11px] text-slate-500">
+                Atendimento: <strong className="text-emerald-400">Coleta e entrega rápida</strong> • Saída Dutra 225
+              </div>
+            </div>
+
+            <ArrowRight className="w-4 h-4 text-slate-500 group-hover:text-amber-400 group-hover:translate-x-1 transition shrink-0" />
+          </button>
+        ))}
+
+        {filtered.length === 0 && (
+          <div className="col-span-2 text-center py-10 text-xs text-slate-500 bg-slate-950 rounded-2xl border border-slate-800">
+            Nenhuma rota localizada com os filtros selecionados.
+          </div>
+        )}
+      </div>
+
+    </div>
+  );
+
+  if (isOpenModal) {
+    return (
+      <div className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4 animate-fadeIn">
+        <div className="bg-slate-900 border border-slate-800 w-full max-w-4xl rounded-3xl p-6 sm:p-8 shadow-2xl relative">
+          <div className="flex items-center justify-between pb-4 border-b border-slate-800 mb-6">
+            <div>
+              <div className="flex items-center gap-2">
+                <Layers className="w-5 h-5 text-amber-400" />
+                <h3 className="font-heading text-xl font-black text-white">
+                  50 Bairros & Rotas Especializadas
+                </h3>
+              </div>
+              <p className="text-xs text-slate-400 mt-0.5">
+                Selecione o bairro desejado para visualizar a página completa de atendimento e solicitar o motoboy
+              </p>
+            </div>
+            {onCloseModal && (
+              <button 
+                onClick={onCloseModal}
+                className="p-2.5 text-slate-400 hover:text-white rounded-full bg-slate-800 cursor-pointer"
+                aria-label="Fechar"
+              >
+                <X className="w-5 h-5" />
               </button>
             )}
           </div>
+          {content}
         </div>
-
-        {/* 50 Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredServices.map((service, index) => (
-            <div
-              key={service.id}
-              className="bg-slate-950 border border-slate-800/90 rounded-2xl p-5 shadow-lg hover:border-amber-500/40 hover:shadow-amber-500/5 transition-all flex flex-col justify-between group"
-            >
-              <div className="space-y-3">
-                {/* Micro header badge */}
-                <div className="flex items-center justify-between text-xs">
-                  <span className="bg-amber-500/10 text-amber-300 border border-amber-500/20 px-2 py-0.5 rounded-md font-semibold text-[11px]">
-                    {service.categoryLabel}
-                  </span>
-                  <span className="text-slate-500 font-mono text-[11px]">
-                    Pág #{index + 1}
-                  </span>
-                </div>
-
-                {/* Service Title */}
-                <h3 
-                  onClick={() => onSelectService(service.id)}
-                  className="font-heading text-base font-bold text-white group-hover:text-amber-400 transition cursor-pointer leading-snug"
-                >
-                  {service.title}
-                </h3>
-
-                {/* Neighborhood & SLA Pill */}
-                <div className="flex items-center gap-3 text-xs text-slate-400">
-                  <span className="flex items-center gap-1 text-slate-300 font-medium truncate">
-                    <MapPin className="w-3.5 h-3.5 text-rose-400 shrink-0" />
-                    {service.neighborhood}
-                  </span>
-                  <span className="flex items-center gap-1 text-emerald-400 font-bold shrink-0">
-                    <Clock className="w-3.5 h-3.5" />
-                    {service.deliveryTimeEstimate}
-                  </span>
-                </div>
-
-                {/* Highlights preview */}
-                <p className="text-xs text-slate-400 line-clamp-2 leading-relaxed">
-                  {service.tagline}
-                </p>
-
-                <div className="text-[11px] text-slate-500">
-                  📍 Aprox. {service.distanceFromBaseKm} km da Base Dutra 225
-                </div>
-              </div>
-
-              {/* Action Buttons */}
-              <div className="pt-4 mt-4 border-t border-slate-800/80 flex items-center justify-between gap-2">
-                <button
-                  onClick={() => onSelectService(service.id)}
-                  className="text-xs font-bold text-amber-400 hover:text-amber-300 flex items-center gap-1 transition cursor-pointer"
-                >
-                  Ver Página Completa
-                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                </button>
-
-                <a
-                  href={generateWhatsAppLink(service.whatsappMessage)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-emerald-950/60 hover:bg-emerald-900/60 border border-emerald-800/50 text-emerald-300 hover:text-white px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1 transition"
-                  title="Chamar no WhatsApp com dados desta página"
-                >
-                  <Phone className="w-3 h-3 text-emerald-400" /> WhatsApp
-                </a>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {filteredServices.length === 0 && (
-          <div className="text-center py-16 bg-slate-950 rounded-2xl border border-slate-800 space-y-3">
-            <Layers className="w-10 h-10 text-slate-600 mx-auto" />
-            <h4 className="text-base font-bold text-white">Nenhum serviço encontrado</h4>
-            <p className="text-xs text-slate-400">Tente ajustar seus termos de pesquisa ou remover os filtros aplicados.</p>
-            <button
-              onClick={() => {
-                setSelectedRegion('Todas');
-                setSelectedCategory('Todas');
-                setSearchQuery('');
-              }}
-              className="bg-amber-500 hover:bg-amber-400 text-slate-950 text-xs font-bold px-4 py-2 rounded-xl transition"
-            >
-              Resetar Filtros
-            </button>
-          </div>
-        )}
-
       </div>
-    </section>
+    );
+  }
+
+  return (
+    <div className="w-full max-w-7xl mx-auto pt-10 space-y-6">
+      <div className="border-b border-slate-800 pb-4">
+        <h3 className="font-heading text-2xl font-black text-white">
+          Diretório Completo de 50 Bairros e Serviços
+        </h3>
+        <p className="text-xs sm:text-sm text-slate-400 mt-1">
+          Navegue pelas rotas programáticas atendidas por nossa frota com saída da Rodovia Presidente Dutra 225
+        </p>
+      </div>
+      {content}
+    </div>
   );
 };

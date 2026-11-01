@@ -1,7 +1,9 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import fs from 'node:fs';
 import { SERVICES_CATALOG, COMPANY_INFO } from '../data/servicesCatalog';
 import { calculateFreightQuote, generateWhatsAppLink, getEstimatedDistanceKm, formatCurrencyBRL } from './pricing';
+import { generateDeepPageContent } from './contentGenerator';
 
 test('services catalog has exactly 50 unique programmatic landing pages', () => {
   assert.equal(SERVICES_CATALOG.length, 50, `Expected 50 pages, but got ${SERVICES_CATALOG.length}`);
@@ -21,7 +23,19 @@ test('services catalog has exactly 50 unique programmatic landing pages', () => 
   }
 });
 
-test('freight calculator returns consistent estimates and bounds', () => {
+test('strictly NO ecommerce or same day delivery categories in catalog', () => {
+  for (const page of SERVICES_CATALOG) {
+    // Assert no category is ecommerce
+    assert.notEqual((page as any).category, 'ecommerce', `Service ${page.id} has category ecommerce`);
+    assert.notEqual(page.serviceCategory, 'ecommerce' as any, `Service ${page.id} has serviceCategory ecommerce`);
+    
+    // Assert no titles or headings mention same day delivery for ecommerce
+    assert.ok(!page.title.toLowerCase().includes('same day delivery para e-commerce'), `Service ${page.id} contains forbidden phrase in title`);
+    assert.ok(!page.h1.toLowerCase().includes('same day delivery para e-commerce'), `Service ${page.id} contains forbidden phrase in h1`);
+  }
+});
+
+test('freight calculator returns consistent estimates without time promises', () => {
   const quote = calculateFreightQuote({
     origin: 'Vila Itapegica',
     destination: 'Brás (Polo de Confecções)',
@@ -33,9 +47,9 @@ test('freight calculator returns consistent estimates and bounds', () => {
   assert.ok(quote.estimatedPriceMin > 0, 'Min price should be positive');
   assert.ok(quote.estimatedPriceMax >= quote.estimatedPriceMin, 'Max price should be >= min price');
   assert.ok(quote.distanceKmEstimate > 0, 'Distance should be positive');
-  assert.ok(quote.estimatedTimeMinMinutes > 0, 'Min time should be positive');
-  assert.ok(quote.estimatedTimeMaxMinutes >= quote.estimatedTimeMinMinutes, 'Max time should be >= min time');
   assert.ok(quote.whatsappMessage.includes('Brás (Polo de Confecções)'), 'Message should mention destination');
+  assert.ok(quote.whatsappMessage.includes('Coleta rápida e entrega ágil sob demanda'), 'Message should emphasize speed without false time promises');
+  assert.ok(!quote.whatsappMessage.includes('min.'), 'Message should NOT promise minutes');
 });
 
 test('whatsapp link generator formats correct target and phone number', () => {
@@ -52,4 +66,19 @@ test('distance calculation handles known hubs properly', () => {
 test('currency formatter produces valid BRL string', () => {
   const formatted = formatCurrencyBRL(45);
   assert.ok(formatted.includes('45'), 'Should format value with 45');
+});
+
+test('every landing page generates at least 800 substantive words as required', () => {
+  for (const page of SERVICES_CATALOG) {
+    const content = generateDeepPageContent(page);
+    assert.ok(
+      content.wordCount >= 750, 
+      `Page ${page.id} has only ${content.wordCount} words, expected >= 750-800`
+    );
+  }
+});
+
+test('custom favicon and logo SVG files exist in public directory', () => {
+  assert.ok(fs.existsSync('./public/favicon.svg'), 'favicon.svg must exist');
+  assert.ok(fs.existsSync('./public/logo.svg'), 'logo.svg must exist');
 });

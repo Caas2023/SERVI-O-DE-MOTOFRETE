@@ -919,157 +919,157 @@ const rawServices: ServiceDef[] = [
     msg: "Olá! Gostaria de cotar motoboy para atendimento contábil na Mooca."
   },
 
-  // 36-41: E-commerce & Logística Same Day Delivery
+  // 36-41: Malotes Corporativos, Peças & Insumos de Urgência
   {
-    id: "ecommerce-same-day-delivery-guarulhos-sp",
-    category: "ecommerce",
-    catLabel: "E-commerce & Same Day",
+    id: "motoboy-transporte-malotes-dutra",
+    category: "corporativo",
+    catLabel: "Corporativo & Malotes",
     region: "Guarulhos",
     neighborhood: "Ponte Grande / Dutra / Hubs Logísticos",
-    title: "Same Day Delivery para E-commerce em Guarulhos e SP",
-    h1: "Logística Same Day Delivery para Lojas Virtuais e Marketplaces",
-    tagline: "Entregue seus produtos no mesmo dia da compra com taxa de conversão máxima e protocolo digital.",
-    deliveryTime: "30 a 60 min",
+    title: "Transporte e Troca de Malotes Corporativos na Via Dutra",
+    h1: "Motoboy para Malotes Corporativos e Sedes na Rodovia Presidente Dutra",
+    tagline: "Circulação segura de malotes bancários, contratos e relatórios entre filiais da Via Dutra.",
+    deliveryTime: "20 a 35 min",
     distKm: 1.5,
-    landmarks: ["Hubs Logísticos Dutra", "Ponte Grande", "Vila Maria Cargas", "Marginal Tietê"],
-    whyUs: "Consumidores compram onde a entrega é rápida. Com nossa estrutura no nó logístico Dutra/Marginal, suas encomendas chegam antes da concorrência.",
-    overview: "Operação profissional de logística de última milha (last mile) para comércios eletrônicos, marcas D2C e lojistas multicanais.",
+    landmarks: ["Rodovia Presidente Dutra", "Ponte Grande", "Trevo de Guarulhos", "Marginal Tietê"],
+    whyUs: "Com sede no Km 225 da Dutra, nossos motoboys atendem galpões, multinacionais e sedes corporativas com pontualidade estrita e lacres de segurança invioláveis.",
+    overview: "Serviço sob demanda ou contrato diário para transporte de malotes fechados, documentos administrativos e canhotos de entrega entre filiais e matriz.",
     steps: [
-      { step: 1, title: "Coleta em Lote", description: "Nosso motoboy recolhe os pacotes bipados e embalados na sua empresa." },
-      { step: 2, title: "Roteirização Inteligente", description: "Definimos o trajeto otimizado por bairro para entrega sequencial." },
-      { step: 3, title: "Comprovação em Tempo Real", description: "Baixa digital com foto de cada entrega concluída." }
+      { step: 1, title: "Lacre de Segurança", description: "O malote é recolhido com lacre numerado e conferência do termo de custódia." },
+      { step: 2, title: "Deslocamento Rápido", description: "Transporte direto sem paradas intermediárias em baú protegido." },
+      { step: 3, title: "Protocolo na Portaria", description: "Entrega em mãos ao destinatário com assinatura e foto do canhoto." }
     ],
     faqs: [
-      { question: "Vocês atendem coletas diárias para lojas virtuais?", answer: "Sim, fazemos contrato com coletas programadas de segunda a sábado." },
-      { question: "Qual o peso e dimensão máxima por pacote?", answer: "Até 15-20kg no baú de moto padrão (medidas típicas até 45x40x40cm)." }
+      { question: "Vocês realizam trocas diárias de malotes entre matriz e filial?", answer: "Sim, operamos rotas fixas diárias ou semanais com faturamento PJ quinzenal ou mensal." },
+      { question: "O motoboy assina termo de sigilo e responsabilidade?", answer: "Sim, todos os nossos mensageiros possuem cadastro verificado e termo de sigilo formal." }
     ],
-    keywords: ["same day delivery guarulhos", "motoboy para e-commerce sp", "entrega mercado livre flex guarulhos", "last mile motoboy"],
-    msg: "Olá! Tenho uma loja virtual e quero implantar entregas no mesmo dia (Same Day) com vocês."
+    keywords: ["motoboy malotes dutra", "transporte malotes guarulhos", "motoboy corporativo via dutra", "malote empresarial guarulhos sp"],
+    msg: "Olá! Preciso de um motoboy para transporte de malotes corporativos na Rodovia Dutra."
   },
   {
-    id: "motoboy-parque-novo-mundo-logistica",
-    category: "ecommerce",
-    catLabel: "E-commerce & Same Day",
+    id: "motoboy-parque-novo-mundo-insumos",
+    category: "autopecas",
+    catLabel: "Autopeças & Insumos",
     region: "Zona Norte SP",
     neighborhood: "Parque Novo Mundo / Fernão Dias",
-    title: "Motoboy no Parque Novo Mundo para Centros de Distribuição",
-    h1: "Motoboy no Parque Novo Mundo: Conexão Fernão Dias e Dutra",
-    tagline: "Atendimento expresso no nó viário do Parque Novo Mundo para CDs e empresas.",
+    title: "Entrega de Peças Mecânicas e Insumos no Parque Novo Mundo",
+    h1: "Motoboy no Parque Novo Mundo: Autopeças e Insumos Industriais",
+    tagline: "Atendimento expresso a galpões mecânicos, retíficas e transportadoras do Parque Novo Mundo.",
     deliveryTime: "15 a 25 min",
     distKm: 2.8,
     landmarks: ["Praça Novo Mundo", "Rodovia Fernão Dias", "Av. Tenente Amaro Felicíssimo da Silveira", "Marginal Tietê"],
-    whyUs: "O Parque Novo Mundo abriga grandes transportadoras e galpões. Chegamos em menos de 15 minutos em qualquer galpão do bairro.",
-    overview: "Transporte de documentos corporativos, amostras comerciais e suprimentos industriais no Parque Novo Mundo.",
+    whyUs: "O Parque Novo Mundo abriga grandes oficinas de linha pesada, retíficas e frotas de caminhão. Levamos filtros, mangueiras, bombas e rolamentos urgentes sem parada na operação.",
+    overview: "Coleta de peças automotivas, juntas, rolamentos e parafusos industriais em distribuidores com entrega imediata em oficinas e pátios.",
     steps: [
-      { step: 1, title: "Solicitação", description: "Envie detalhes da coleta no Parque Novo Mundo." },
-      { step: 2, title: "Ação Imediata", description: "Mensageiro despachado da base Dutra." },
-      { step: 3, title: "Entrega", description: "Conclusão com protocolo formal." }
+      { step: 1, title: "Solicitação Rápida", description: "Envie endereço da distribuidora e número da peça ou nota." },
+      { step: 2, title: "Retirada no Balcão", description: "O motoboy confere o código da peça e acomoda com proteção." },
+      { step: 3, title: "Entrega na Oficina", description: "Descarregamento imediato na baia do mecânico responsável." }
     ],
     faqs: [
-      { question: "Vocês têm faturamento mensal para empresas do Parque Novo Mundo?", answer: "Sim, oferecemos contratos com fechamento mensal via boleto." }
+      { question: "Vocês atendem faturamento mensal para oficinas e frotistas?", answer: "Sim, emitimos boleto quinzenal ou mensal com NF-e discriminada." }
     ],
-    keywords: ["motoboy parque novo mundo", "entregas galpao parque novo mundo", "motoboy fernao dias", "entregador tenente amaro"],
-    msg: "Olá! Preciso de um motoboy no Parque Novo Mundo para coletar uma encomenda."
+    keywords: ["motoboy autopecas parque novo mundo", "entrega pecas caminhoes fernao dias", "motoboy tenente amaro", "insumos industriais motoboy zn"],
+    msg: "Olá! Preciso de um motoboy no Parque Novo Mundo para transportar peças automotivas / industriais urgentes."
   },
   {
-    id: "ecommerce-sameday-tatuape-analia-franco",
-    category: "ecommerce",
-    catLabel: "E-commerce & Same Day",
+    id: "motoboy-tatuape-chaves-vistorias",
+    category: "corporativo",
+    catLabel: "Corporativo & Imobiliário",
     region: "Zona Leste SP",
-    neighborhood: "Tatuapé / E-commerce Local",
-    title: "Entregas no Mesmo Dia para E-commerce no Tatuapé",
-    h1: "Same Day Delivery para Lojas Virtuais e D2C no Tatuapé",
-    tagline: "Encante seus clientes com entregas expressas de 2 a 4 horas em toda a Zona Leste e Guarulhos.",
-    deliveryTime: "25 a 45 min",
+    neighborhood: "Tatuapé / Anália Franco",
+    title: "Entrega de Chaves, Vistorias e Contratos no Tatuapé",
+    h1: "Motoboy no Tatuapé: Chaves de Imóveis, Vistorias e Assinaturas",
+    tagline: "Agilidade premium para imobiliárias, corretores, arquitetos e construtoras do Tatuapé e Anália Franco.",
+    deliveryTime: "25 a 40 min",
     distKm: 9.0,
-    landmarks: ["Rua Itapura", "Rua Coelho Lisboa", "Rua Serra de Japi", "Praça Silvio Romero"],
-    whyUs: "Lojas de vestuário, cosméticos e eletrônicos do Tatuapé aumentam suas vendas com entrega relâmpago no mesmo dia.",
-    overview: "Coletas no seu estoque físico ou dark store e distribuição rápida para o consumidor final.",
+    landmarks: ["Rua Itapura", "Rua Coelho Lisboa", "Praça Silvio Romero", "Jardim Anália Franco"],
+    whyUs: "O mercado imobiliário do Tatuapé não pode perder visitas nem fechar plantão por falta de chave ou minuta contratual. Nossos motoboys transportam com protocolo físico rigoroso.",
+    overview: "Circulação rápida de molhos de chaves etiquetados, laudos de vistoria de entrega de chaves, plantas arquitetônicas e contratos de locação ou compra e venda.",
     steps: [
-      { step: 1, title: "Bipagem", description: "Separe os pedidos até o horário de corte." },
-      { step: 2, title: "Roteiro", description: "Nosso motoboy executa as entregas porta a porta." },
-      { step: 3, title: "Notificação", description: "Seu cliente recebe com foto e assinatura na hora." }
+      { step: 1, title: "Guarda da Chave", description: "O mensageiro retira a chave na imobiliária com identificação formal." },
+      { step: 2, title: "Entrega no Plantão", description: "Deslocamento veloz até o condomínio ou corretor de plantão." },
+      { step: 3, title: "Recibo ou Devolução", description: "Colheita de protocolo assinado ou devolução das chaves no mesmo dia." }
     ],
     faqs: [
-      { question: "Vocês atendem marcas de cosméticos e moda do Tatuapé?", answer: "Sim, cuidamos da integridade estética das sacolas e embalagens." }
+      { question: "Vocês recolhem assinatura do locatário e devolvem o contrato?", answer: "Sim, realizamos o formato de corrida dupla 'leva e traz' com conferência das rubricas." }
     ],
-    keywords: ["same day delivery tatuape", "motoboy loja virtual tatuape", "entrega expressa rua itapura"],
-    msg: "Olá! Quero cotar entregas same day para minha loja virtual no Tatuapé."
+    keywords: ["motoboy entrega chaves tatuape", "motoboy imobiliaria analia franco", "entrega contratos silvio romero", "motoboy rua itapura"],
+    msg: "Olá! Preciso de um motoboy no Tatuapé para entrega de chaves e contratos imobiliários."
   },
   {
-    id: "ecommerce-sameday-santana-zn",
-    category: "ecommerce",
-    catLabel: "E-commerce & Same Day",
+    id: "motoboy-santana-laboratorios-dentistas",
+    category: "saude",
+    catLabel: "Saúde & Odontologia",
     region: "Zona Norte SP",
-    neighborhood: "Santana / E-commerce ZN",
-    title: "Same Day Delivery para Lojas da Zona Norte de São Paulo",
-    h1: "Entregas Expressas no Mesmo Dia em Santana e Zona Norte",
-    tagline: "Atenda clientes em Santana, Jardim São Paulo, Mandaqui e Tucuruvi com rapidez insuperável.",
-    deliveryTime: "25 a 45 min",
+    neighborhood: "Santana / Jardim São Paulo",
+    title: "Transporte de Próteses Dentárias e Moldes em Santana",
+    h1: "Motoboy em Santana para Clínicas Odontológicas e Laboratórios de Prótese",
+    tagline: "Transporte de moldes de gesso, alinhadores ortodônticos, coroas e implantes com amortecimento total.",
+    deliveryTime: "25 a 40 min",
     distKm: 8.0,
-    landmarks: ["Av. Engenheiro Caetano Álvares", "Av. Nova Cantareira", "Av. Água Fria", "Santana"],
-    whyUs: "A Zona Norte possui topografia com ladeiras e trânsito intenso. Nossos pilotos experientes entregam sem atraso.",
-    overview: "Solução ágil de despacho de mercadorias leves e encomendas online para a Zona Norte paulistana.",
+    landmarks: ["Av. Nova Cantareira", "Rua Voluntários da Pátria", "Estação Santana", "Av. Braz Leme"],
+    whyUs: "Santana é o maior polo de consultórios odontológicos e clínicas médicas da Zona Norte. Nosso transporte conta com acondicionamento antichoque para próteses delicadas.",
+    overview: "Coletas e entregas programadas ou de emergência entre laboratórios de prótese dentária e consultórios em Santana, Parada Inglesa e Tucuruvi.",
     steps: [
-      { step: 1, title: "Solicitação", description: "Abra a rota pelo WhatsApp com a lista de destinatários." },
-      { step: 2, title: "Retirada", description: "Buscamos na sua loja ou centro de separação." },
-      { step: 3, title: "Entrega Domiciliar", description: "Mercadoria entregue ao comprador final." }
+      { step: 1, title: "Acondicionamento Seguro", description: "A caixa protética é acomodada em nicho acolchoado no baú." },
+      { step: 2, title: "Transporte Cauteloso", description: "Pilotagem defensiva com atenção absoluta para evitar trepidações." },
+      { step: 3, title: "Entrega à Secretária", description: "Protocolo assinado na recepção do consultório com envio no WhatsApp." }
     ],
     faqs: [
-      { question: "Vocês cobrem a Av. Nova Cantareira e Água Fria?", answer: "Sim, cobrimos integralmente todo o quadrante norte." }
+      { question: "Vocês atendem clínicas na Rua Voluntários da Pátria e Braz Leme?", answer: "Sim, realizamos rotas diárias pelos principais centros clínicos de Santana." }
     ],
-    keywords: ["same day delivery santana", "motoboy entrega rapida tucuruvi", "entregador zona norte e-commerce"],
-    msg: "Olá! Gostaria de implantar entregas rápidas para meus clientes em Santana e Zona Norte."
+    keywords: ["motoboy protese dentaria santana", "transporte moldes odontologicos zn", "motoboy voluntarios da patria", "entrega laboratorial santana sp"],
+    msg: "Olá! Preciso de um motoboy em Santana para transporte de trabalhos protéticos / odontológicos."
   },
   {
-    id: "motoboy-cecap-guarulhos-encomendas",
-    category: "ecommerce",
-    catLabel: "E-commerce & Same Day",
+    id: "motoboy-cecap-hospital-geral-malotes",
+    category: "saude",
+    catLabel: "Saúde & Documentos",
     region: "Guarulhos",
-    neighborhood: "Parque Cecap / Zezinho Magalhães",
-    title: "Entrega Rápida de Encomendas no Parque Cecap em Guarulhos",
-    h1: "Motoboy no Parque Cecap: Atendimento Ágil em Guarulhos",
-    tagline: "Proximidade com o Terminal Cecap da CPTM e Hospital Geral de Guarulhos.",
+    neighborhood: "Parque Cecap / Hospital Geral de Guarulhos",
+    title: "Entrega de Malotes e Documentos Médicos no Cecap",
+    h1: "Motoboy no Cecap: Hospital Geral de Guarulhos e Clínicas Especializadas",
+    tagline: "Atendimento expresso ao complexo médico do Cecap, Terminal Rodoviário e Av. Monteiro Lobato.",
     deliveryTime: "20 a 30 min",
     distKm: 7.2,
-    landmarks: ["Hospital Geral de Guarulhos", "Estação Guarulhos-CECAP CPTM", "Terminal Rodoviário Cecap", "Av. Monteiro Lobato"],
-    whyUs: "Bairro com grande densidade residencial e polo médico. Entregamos compras e documentos com segurança.",
-    overview: "Serviço expresso para moradores e funcionários de instituições no bairro Cecap.",
+    landmarks: ["Hospital Geral de Guarulhos (HGG)", "Estação Guarulhos-CECAP CPTM", "Terminal Rodoviário Cecap", "Av. Monteiro Lobato"],
+    whyUs: "Bairro estratégico que abriga o Hospital Geral de Guarulhos e diversos serviços públicos. Garantimos entrega direta a setores administrativos e recepção.",
+    overview: "Transporte ágil de prontuários, laudos periciais, termos médicos autorizados e malotes administrativos no Cecap e imediações.",
     steps: [
-      { step: 1, title: "Pedido", description: "Indique o bloco, condomínio ou setor no Cecap." },
-      { step: 2, title: "Deslocamento", description: "Motoboy em trânsito com cuidado e agilidade." },
-      { step: 3, title: "Recepção", description: "Comprovante assinado no ato da entrega." }
+      { step: 1, title: "Identificação do Setor", description: "Indique a ala, bloco ou setor receptor no complexo do Cecap." },
+      { step: 2, title: "Deslocamento Ágil", description: "Chegada em minutos pelas avenidas Monteiro Lobato e Tancredo Neves." },
+      { step: 3, title: "Confirmação Formal", description: "Entrega ao profissional autorizado com foto do protocolo assinado." }
     ],
     faqs: [
-      { question: "Vocês realizam entregas na portaria de condomínios do Cecap?", answer: "Sim, respeitamos os protocolos de segurança de todas as portarias." }
+      { question: "Vocês entregam em recepções hospitalares e postos?", answer: "Sim, nossos entregadores seguem as orientações de acesso e higiene hospitalar." }
     ],
-    keywords: ["motoboy cecap guarulhos", "entrega hospital geral guarulhos", "motoboy monteiro lobato", "entregador parque cecap"],
-    msg: "Olá! Preciso de um motoboy para fazer uma entrega no Cecap em Guarulhos."
+    keywords: ["motoboy hospital geral guarulhos", "entrega documentos cecap guarulhos", "motoboy monteiro lobato", "motoboy saude guarulhos"],
+    msg: "Olá! Preciso de um motoboy para levar documentos urgentes no Cecap / Hospital Geral de Guarulhos."
   },
   {
-    id: "ecommerce-cangaiba-engenheiro-goulart",
-    category: "ecommerce",
-    catLabel: "E-commerce & Same Day",
+    id: "motoboy-cangaiba-pequenas-cargas-urgentes",
+    category: "autopecas",
+    catLabel: "Autopeças & Cargas Rápidas",
     region: "Zona Leste SP",
     neighborhood: "Cangaíba / Engenheiro Goulart",
-    title: "Entregas de E-commerce no Cangaíba e Engenheiro Goulart",
-    h1: "Motoboy para E-commerce e Lojas Virtuais no Cangaíba",
-    tagline: "Conexão veloz entre a Penha, Ayrton Senna e bairros residenciais do Cangaíba.",
+    title: "Motoboy no Cangaíba: Baterias, Peças e Suprimentos de Oficinas",
+    h1: "Motoboy no Cangaíba e Engenheiro Goulart: Socorro Rápido e Peças",
+    tagline: "Deslocamento ágil entre a Av. Cangaíba, Penha e Rodovia Ayrton Senna para autopeças e ferramentas.",
     deliveryTime: "20 a 35 min",
     distKm: 5.6,
-    landmarks: ["Av. Cangaíba", "Estação Engenheiro Goulart", "Parque Ecológico", "Av. Danfer"],
-    whyUs: "Agilidade no atendimento residencial na Zona Leste, entregando encomendas com foto e confirmação imediata.",
-    overview: "Serviço para lojistas online que vendem para a região de Cangaíba, Danfer e Ermelino Matarazzo.",
+    landmarks: ["Av. Cangaíba", "Estação Engenheiro Goulart", "Av. Danfer", "Parque Ecológico do Tietê"],
+    whyUs: "O Cangaíba possui centenas de oficinas mecânicas, funilarias e indústrias leves que precisam de peças e ferramentas de reposição urgente vindas de distribuidores.",
+    overview: "Serviço de socorro e entrega expressa de baterias, cabos, pastilhas de freio e insumos em oficinas do Cangaíba e Engenheiro Goulart.",
     steps: [
-      { step: 1, title: "Coleta", description: "Buscamos os pacotes na sua expedição." },
-      { step: 2, title: "Entrega Local", description: "Roteiro direto na casa do consumidor." },
-      { step: 3, title: "Baixa", description: "Comprovante fotográfico com documento." }
+      { step: 1, title: "Coleta no Distribuidor", description: "Buscamos a peça na autopeças ou concessionária indicada." },
+      { step: 2, title: "Trajeto Seguro", description: "Peça calçada no baú de moto para proteção de roscas e sensores." },
+      { step: 3, title: "Entrega na Oficina", description: "Recebimento direto pelo mecânico responsável." }
     ],
     faqs: [
-      { question: "Vocês atendem condomínios da Av. Danfer?", answer: "Sim, atendemos todos os residenciais e travessas do Cangaíba." }
+      { question: "Vocês transportam baterias automotivas?", answer: "Sim, transportamos baterias seladas em posição vertical com calço antiderrapante." }
     ],
-    keywords: ["motoboy cangaiba e-commerce", "entregas engenheiro goulart", "motoboy av cangaiba"],
-    msg: "Olá! Preciso de entregas de e-commerce no Cangaíba e Engenheiro Goulart."
+    keywords: ["motoboy cangaiba", "entrega pecas oficinas cangaiba", "motoboy engenheiro goulart", "entregador av cangaiba autopecas"],
+    msg: "Olá! Preciso de um motoboy no Cangaíba para retirar peças de reposição em distribuidora."
   },
 
   // 42-47: Saúde, Medicamentos & Laboratórios

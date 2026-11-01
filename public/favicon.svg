@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="brandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F59E0B" />
+      <stop offset="100%" stop-color="#D97706" />
+    </linearGradient>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F172A" />
+      <stop offset="100%" stop-color="#020617" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background Rounded Badge -->
+  <rect width="64" height="64" rx="16" fill="url(#bgGrad)" stroke="#334155" stroke-width="2"/>
+  
+  <!-- Speed Lines -->
+  <path d="M10 24 H22" stroke="#F59E0B" stroke-width="3" stroke-linecap="round" opacity="0.8"/>
+  <path d="M6 32 H18" stroke="#F59E0B" stroke-width="3" stroke-linecap="round" opacity="0.9"/>
+  <path d="M12 40 H20" stroke="#F59E0B" stroke-width="3" stroke-linecap="round" opacity="0.7"/>
+
+  <!-- Motorcycle Courier Symbol -->
+  <!-- Rear Wheel -->
+  <circle cx="25" cy="42" r="9" fill="none" stroke="#F8FAFC" stroke-width="3.5"/>
+  <circle cx="25" cy="42" r="3" fill="#F59E0B"/>
+  
+  <!-- Front Wheel -->
+  <circle cx="49" cy="42" r="9" fill="none" stroke="#F8FAFC" stroke-width="3.5"/>
+  <circle cx="49" cy="42" r="3" fill="#F59E0B"/>
+
+  <!-- Bike Frame and Fork -->
+  <path d="M25 42 L34 32 L44 32 L49 42" fill="none" stroke="#F59E0B" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M34 32 L29 25" stroke="#F59E0B" stroke-width="3.5" stroke-linecap="round"/>
+  
+  <!-- Courier Box / Baú -->
+  <rect x="18" y="22" width="12" height="11" rx="2.5" fill="#F59E0B" stroke="#B45309" stroke-width="1.5"/>
+
+  <!-- Rider Body & Helmet -->
+  <circle cx="36" cy="18" r="5" fill="#F8FAFC"/>
+  <!-- Helmet Visor -->
+  <path d="M38 18 Q41 19 39 21" stroke="#0F172A" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+  <!-- Rider Torso leaned forward -->
+  <path d="M34 23 L41 27 L44 32" stroke="#F8FAFC" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  
+  <!-- Live Signal Dot -->
+  <circle cx="53" cy="13" r="4.5" fill="#10B981"/>
+  <circle cx="53" cy="13" r="2" fill="#FFFFFF"/>
+</svg>

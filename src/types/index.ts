@@ -4,9 +4,8 @@ export type ServiceCategory =
   | 'shopping' 
   | 'documentos' 
   | 'bras-moda' 
-  | 'ecommerce' 
-  | 'saude' 
   | 'autopecas' 
+  | 'saude' 
   | 'bancario' 
   | 'aeroporto' 
   | 'corporativo';

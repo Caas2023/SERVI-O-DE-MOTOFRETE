@@ -1,6 +1,6 @@
 {
   "name": "Motoboy e Logística Express",
-  "description": "Serviço profissional de motoboy e logística express em Guarulhos, Brás, Tatuapé, Zona Norte e Leste de SP. Entregas em shoppings, documentos, e-commerce e faturamento para empresas.",
+  "description": "Serviço profissional de motoboy e logística express em Guarulhos, Brás, Tatuapé, Zona Norte e Leste de SP. Entregas em shoppings, confecções, cartórios, autopeças e faturamento PJ.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

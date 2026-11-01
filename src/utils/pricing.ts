@@ -96,7 +96,7 @@ export function calculateFreightQuote(req: QuoteCalculationRequest): QuoteCalcul
     `${req.isUrgent ? '⚡ Urgente: SIM (prioritário)\n' : ''}` +
     `${req.needsReturn ? '🔄 Retorno: SIM (ida e volta)\n' : ''}` +
     `💰 Estimativa online: R$ ${minPrice} a R$ ${maxPrice}\n` +
-    `⏱️ Tempo estimado: ${timeMin} a ${timeMax} min.\n` +
+    `⚡ Atendimento: Coleta rápida e entrega ágil sob demanda\n` +
     `Poderia confirmar a disponibilidade para envio imediato?`;
 
   return {
